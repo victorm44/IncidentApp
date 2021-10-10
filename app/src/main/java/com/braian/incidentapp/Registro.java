@@ -34,6 +34,7 @@ public class Registro extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         conectar();
+
         registrar.setOnClickListener(v -> registro());
     }
 
