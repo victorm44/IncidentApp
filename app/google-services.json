@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "362986356179",
-    "project_id": "incidentapp-5a1c7",
-    "storage_bucket": "incidentapp-5a1c7.appspot.com"
+    "project_number": "893237569470",
+    "project_id": "incidentapp-462a7",
+    "storage_bucket": "incidentapp-462a7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:362986356179:android:6130c4999c1f67b2768326",
+        "mobilesdk_app_id": "1:893237569470:android:1d3181f58122bd6342fbef",
         "android_client_info": {
           "package_name": "com.braian.incidentapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "362986356179-o77e7o0vbqmsfapi85k0losvaiqlv3u6.apps.googleusercontent.com",
+          "client_id": "893237569470-cv47tdg9hcikvmf6aoqbkkel7g0bc82j.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBxr84FZToJCBLzEufWLo932HTocp2HCkU"
+          "current_key": "AIzaSyA6ugPu7KIy7Lof3s2bfMScbmwDZ_Pc7wU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "362986356179-o77e7o0vbqmsfapi85k0losvaiqlv3u6.apps.googleusercontent.com",
+              "client_id": "893237569470-cv47tdg9hcikvmf6aoqbkkel7g0bc82j.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
