@@ -21,8 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Registro extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("users");
+    private DatabaseReference mDatabase;
     EditText nombre, apellido, cedula, correo, contra;
     RadioButton user, admin;
     Button registrar;
@@ -33,6 +32,7 @@ public class Registro extends AppCompatActivity {
         setContentView(R.layout.activity_registro);
 
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference("users");
         conectar();
 
         registrar.setOnClickListener(v -> registro());
@@ -47,7 +47,8 @@ public class Registro extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            crearRegistro(nombre.getText().toString(), apellido.getText().toString(), cedula.getText().toString());
+                            String id = task.getResult().getUser().getUid();
+                            crearRegistro(id,nombre.getText().toString(), apellido.getText().toString(), cedula.getText().toString());
                             retornar();
                         } else {
                             tostada();
@@ -66,7 +67,7 @@ public class Registro extends AppCompatActivity {
         Toast.makeText(this, "Hay problemas revisa tu conexión", Toast.LENGTH_SHORT).show();
     }
 
-    private void crearRegistro(String nombre, String apellido, String cedula){
+    private void crearRegistro(String id, String nombre, String apellido, String cedula){
 
         String rol = "";
         if (admin.isChecked()){
@@ -75,7 +76,7 @@ public class Registro extends AppCompatActivity {
             rol = "user";
         }
         User user = new User(nombre,apellido, rol, cedula);
-        myRef.setValue(user);
+        mDatabase.child(id).setValue(user);
     }
 
     private void conectar(){

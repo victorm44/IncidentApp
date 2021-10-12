@@ -7,6 +7,9 @@ public class User {
     String rol;
     String cedula;
 
+    public User() {
+    }
+
     public User(String nombre, String apellido, String rol, String cedula) {
         this.nombre = nombre;
         this.apellido = apellido;

@@ -1,17 +1,29 @@
 package com.braian.incidentapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.braian.incidentapp.clases.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 public class Principal extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
     Button btn_reporte;
     Button btn_registro;
 
@@ -20,6 +32,9 @@ public class Principal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        checkRol();
         btn_reporte = findViewById(R.id.btn_reportar);
         btn_registro = findViewById(R.id.btn_registrar);
 
@@ -27,9 +42,34 @@ public class Principal extends AppCompatActivity {
         btn_reporte.setOnClickListener(v -> reporte());
     }
 
+    private void checkRol(){
+
+        String id = "";
+        if (mAuth.getCurrentUser() != null){
+            id = mAuth.getUid();
+        }
+        mDatabase.child("users").child(id).child("rol").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()){
+                    if (task.getResult().getValue() != null){
+                        unable(task.getResult().getValue().toString().trim());
+                    }
+                }
+            }
+        });
+    }
+
     private void reporte(){
         Intent i = new Intent(this, Reportar.class);
         startActivity(i);
+    }
+
+    private void unable(String s){
+        if (!s.equals("admin")){
+            btn_registro.setVisibility(View.INVISIBLE);
+            btn_registro.setEnabled(false);
+        }
     }
 
     private void registro(){
