@@ -26,6 +26,8 @@ public class Principal extends AppCompatActivity {
     private DatabaseReference mDatabase;
     Button btn_reporte;
     Button btn_registro;
+    Button btn_mostrarEmpleado;
+    Button btn_mostrarReportes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class Principal extends AppCompatActivity {
         checkRol();
         btn_reporte = findViewById(R.id.btn_reportar);
         btn_registro = findViewById(R.id.btn_registrar);
+        btn_mostrarEmpleado = findViewById(R.id.btn_mostrarEmpleado);
+        btn_mostrarReportes =findViewById(R.id.btn_mostrarReportes);
 
         btn_registro.setOnClickListener(v -> registro());
         btn_reporte.setOnClickListener(v -> reporte());
@@ -74,6 +78,16 @@ public class Principal extends AppCompatActivity {
 
     private void registro(){
         Intent i = new Intent(this, Registro.class);
+        startActivity(i);
+    }
+
+    private void mostrarEmpleado(){
+        Intent i = new Intent(this, Empleados.class);
+        startActivity(i);
+    }
+
+    private void mostrarReportes(){
+        Intent i = new Intent(this, MostrarReportes.class);
         startActivity(i);
     }
 }

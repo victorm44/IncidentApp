@@ -57,8 +57,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="40dp"
-                android:text="Reportar"/>
+                android:layout_margin="20dp"
+                android:text="Reportar Incidente"/>
+
+            <Button
+                android:id="@+id/btn_mostrarReportes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:text="Mostrar Reportes" />
 
             <Button
                 android:id="@+id/btn_registrar"
@@ -66,7 +74,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
-                android:text="Registrar"/>
+                android:text="Registrar Empleado" />
+
+            <Button
+                android:id="@+id/btn_mostrarEmpleado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:text="Mostrar Empleados" />
+
 
         </LinearLayout>
 

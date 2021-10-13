@@ -11,7 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IncidentApp">
-        <activity android:name=".Registro"></activity>
+        <activity
+            android:name=".MostrarReportes"
+            android:exported="true" />
+        <activity
+            android:name=".Empleados"
+            android:exported="true" />
+        <activity android:name=".Registro" />
         <activity android:name=".Principal" />
         <activity android:name=".login">
             <intent-filter>
