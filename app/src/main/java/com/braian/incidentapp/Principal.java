@@ -34,16 +34,22 @@ public class Principal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
+        conectar();
+        checkRol();
+
+
+        btn_mostrarReportes.setOnClickListener(v -> mostrarReportes());
+        btn_registro.setOnClickListener(v -> registro());
+        btn_reporte.setOnClickListener(v -> reporte());
+    }
+
+    private void conectar(){
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        checkRol();
         btn_reporte = findViewById(R.id.btn_reportar);
         btn_registro = findViewById(R.id.btn_registrar);
         btn_mostrarEmpleado = findViewById(R.id.btn_mostrarEmpleado);
         btn_mostrarReportes =findViewById(R.id.btn_mostrarReportes);
-
-        btn_registro.setOnClickListener(v -> registro());
-        btn_reporte.setOnClickListener(v -> reporte());
     }
 
     private void checkRol(){
@@ -68,6 +74,7 @@ public class Principal extends AppCompatActivity {
         Intent i = new Intent(this, Reportar.class);
         startActivity(i);
     }
+
 
     private void unable(String s){
         if (!s.equals("admin")){
