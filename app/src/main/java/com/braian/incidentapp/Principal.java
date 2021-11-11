@@ -41,6 +41,7 @@ public class Principal extends AppCompatActivity {
         btn_mostrarReportes.setOnClickListener(v -> mostrarReportes());
         btn_registro.setOnClickListener(v -> registro());
         btn_reporte.setOnClickListener(v -> reporte());
+        btn_mostrarEmpleado.setOnClickListener(view -> mostrarEmpleado());
     }
 
     private void conectar(){

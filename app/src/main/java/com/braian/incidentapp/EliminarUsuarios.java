@@ -3,13 +3,11 @@ package com.braian.incidentapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,36 +20,25 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Empleados extends AppCompatActivity {
+public class EliminarUsuarios extends AppCompatActivity {
+
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-    Button btn_eliminar;
-    Button btn_editar;
-    private String cedula, nombre, apellido;
     ArrayList<String> listadatos = new ArrayList<>();
-    ListView lvEmpleados;
+    ListView lvEmpleadosE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_empleados);
+        setContentView(R.layout.activity_eliminar_usuarios);
+
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        lvEmpleados = findViewById(R.id.lvEmpleados);
-        btn_eliminar = findViewById(R.id.btn_eliminarEm);
+        lvEmpleadosE = findViewById(R.id.lvEmpleadosE);
         llenarArray();
-        btn_eliminar.setOnClickListener(view -> iniciarDelete());
-        cedula();
-        //obtenerString();
-
+        obtenerString();
     }
-
-    public void iniciarDelete(){
-        Intent i = new Intent(this, EliminarUsuarios.class);
-        startActivity(i);
-    }
-
 
     private void mostrar(){
 
@@ -90,7 +77,7 @@ public class Empleados extends AppCompatActivity {
     private void llenarArray(){
         mostrar();
         ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listadatos);
-        lvEmpleados.setAdapter(adapter);
+        lvEmpleadosE.setAdapter(adapter);
     }
 
     public String prueba(String p) {
@@ -135,10 +122,10 @@ public class Empleados extends AppCompatActivity {
 
     private void obtenerString(){
         final String[] p = {new String()};
-        lvEmpleados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvEmpleadosE.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                p[0] =  lvEmpleados.getItemAtPosition(i)+"";
+                p[0] =  lvEmpleadosE.getItemAtPosition(i)+"";
                 Log.e("d", ""+prueba(p[0]));
                 Query query = mDatabase.child("users").orderByChild("cedula").equalTo(prueba(p[0]));
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -163,24 +150,4 @@ public class Empleados extends AppCompatActivity {
         });
 
     }
-
-    public void cedula(){
-        final String[] p = {new String()};
-        lvEmpleados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                p[0] =  lvEmpleados.getItemAtPosition(i)+"";
-                Log.e("d", ""+prueba(p[0]));
-                iniciar(prueba(p[0])+"");
-            }
-        });
-
-    }
-
-    public void iniciar(String j){
-        Intent i = new Intent(this, EditarEmpleado.class);
-        i.putExtra("cedula", j);
-        startActivity(i);
-    }
-
 }

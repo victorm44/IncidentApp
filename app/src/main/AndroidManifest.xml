@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IncidentApp">
         <activity
+            android:name=".EditarReportes"
+            android:exported="true" />
+        <activity
+            android:name=".EditarEmpleado"
+            android:exported="true" />
+        <activity
+            android:name=".EliminarUsuarios"
+            android:exported="true" />
+        <activity
+            android:name=".EliminarReportes"
+            android:exported="true" />
+        <activity
             android:name=".MostrarReportes"
             android:exported="true" />
         <activity
